@@ -48,16 +48,25 @@ si on n'a pas de sous-titres, on va les créer avec whisper
 
  
 1
+
 00:00:08,640 --> 00:00:14,080
+
 It's like a dream.
 
+
 2
+
 00:00:14,720 --> 00:00:20,320
+
 For example it's like a lie.
 
+
 3
+
 00:00:20,500 --> 00:00:24,880
+
 The cruel morning,
+
 
 donc une ligne avec un nombre qui s'incrémente 
 
