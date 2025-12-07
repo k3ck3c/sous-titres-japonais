@@ -1,15 +1,26 @@
 # sous-titres-japonais
 afficher des sous-titres de chansons japonaises en kanji, hiragana et français ou anglais
+
 l'idée est de télécharger une vidéo de chanson sur YouTube
+
 extraire l'audio
+
 si il n'y a pas de sous-titres, les créer avec whisper
+
 puis convertir l'audio (fichier .mp3) en vidéo avec une image fixe noire
+
 afficher en haut le sous-titres avec 2 lignes
+
 une avec les kanjis
+
 une en hiragana, lisible sans avoir besoin de connaitre les 1945 kanjis de base
+
 il faut installer 
+
 - yt-dlp
+  
 - whisper
+
 - kakasi
 
 
