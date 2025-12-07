@@ -83,15 +83,23 @@ cela signifie que le fichier est bien trouvé par mpv, mais que ce n'est pas un 
 si on prend un fichier de sous-titres japonais, par exemple
 
 1
+
 00:00.000 --> 00:08.000
+
 作詞・作曲・編曲 初音ミク
 
+
 2
+
 00:08.000 --> 00:20.000
+
 それは夢のように まるで嘘のように
 
+
 3
+
 00:20.000 --> 00:34.000
+
 残酷な朝は 全てをうまいさほった
 
 on peut le transformer avec le script suivant, qui prend le fichier de sous-titres en entrée et le fichier résultat avec idéogramme et hiragana
