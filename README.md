@@ -17,11 +17,11 @@ une en hiragana, lisible sans avoir besoin de connaitre les 1945 kanjis de base
 
 il faut installer 
 
-- yt-dlp
+- yt-dlp   disponible à https://github.com/yt-dlp/yt-dlp/wiki/Installation
   
-- whisper
+- whisper disponible à https://github.com/openai/whisper
 
-- kakasi
+- kakasi disponible à http://kakasi.namazu.org/index.html.en
 
 
 exemple pour extraire l'audio d'une vidéo de chanson
