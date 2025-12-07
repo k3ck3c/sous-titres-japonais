@@ -18,7 +18,11 @@ exemple pour extraire l'audio d'une vidéo de chanson
 yt-dlp --no-mtime --restrict-filenames --write-auto-subs -x --audio-format mp3
 
 --no-mtime permet d'avoir le fichier .mp3 à la date actuelle
+
 --restrict-filenames permet d'avoir un nom de fichier .mp3 avec seulement des caractères alphanumériques, pas d'émoticones ou autres caractères
+
 --write-auto-subs écrit les sous-titres si il y en a
+
 -x pour extract 
+
 --audio-format pour créer un fichier .mp3
