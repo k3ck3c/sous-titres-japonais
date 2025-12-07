@@ -105,17 +105,29 @@ si on prend un fichier de sous-titres japonais, par exemple
 on peut le transformer avec le script suivant, qui prend le fichier de sous-titres en entrée et le fichier résultat avec idéogramme et hiragana
 
 #!/bin/bash
+
 infile="$1"
+
 outfile="$2"
+
 while IFS= read -r line; do
+
     if [[ -z $line ]] || [ "${#line}" -lt 3 ] || [[ $line =~ "-->" ]]
+    
     then
+    
         echo "$line" >> "$outfile"
+        
     else
+    
         echo "$line" >> "$outfile"
+        
         echo "$line" | kakasi -JH -i utf8 -o utf8 >> "$outfile"
+        
     fi
+    
 done    < "$infile"
+
 
 le fichier de sous-titres précédent devient
 
