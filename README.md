@@ -37,3 +37,82 @@ yt-dlp --no-mtime --restrict-filenames --write-auto-subs -x --audio-format mp3
 -x pour extract 
 
 --audio-format pour créer un fichier .mp3
+
+si on n'a pas de sous-titres, on va les créer avec whisper
+
+ whisper --fp16 False fichier.mp3 > fichier.srt
+
+ une fois qu'on a un fichier de sous-titres en japonais, on vérifie si la syntaxe du fichier de sous-titres est correcte
+
+ exemple de fichier de sous-titres correct (en anglais)
+
+ 
+1
+00:00:08,640 --> 00:00:14,080
+It's like a dream.
+
+2
+00:00:14,720 --> 00:00:20,320
+For example it's like a lie.
+
+3
+00:00:20,500 --> 00:00:24,880
+The cruel morning,
+
+donc une ligne avec un nombre qui s'incrémente 
+
+un horodatage avec heures minutes secondes séparés par des : et des millièmes de seconde séparés par une virgule
+
+un texte de une ou plusieurs lignes
+
+quand un fichier de sous-titres ne respecte pas cette syntaxe, mpv affiche un message du type
+
+Can not open external file xxx.srt
+
+cela signifie que le fichier est bien trouvé par mpv, mais que ce n'est pas un fichier de sous-titres correct
+
+si on prend un fichier de sous-titres japonais, par exemple
+
+1
+00:00.000 --> 00:08.000
+作詞・作曲・編曲 初音ミク
+
+2
+00:08.000 --> 00:20.000
+それは夢のように まるで嘘のように
+
+3
+00:20.000 --> 00:34.000
+残酷な朝は 全てをうまいさほった
+
+on peut le transformer avec le script suivant, qui prend le fichier de sous-titres en entrée et le fichier résultat avec idéogramme et hiragana
+
+#!/bin/bash
+infile="$1"
+outfile="$2"
+while IFS= read -r line; do
+    if [[ -z $line ]] || [ "${#line}" -lt 3 ] || [[ $line =~ "-->" ]]
+    then
+        echo "$line" >> "$outfile"
+    else
+        echo "$line" >> "$outfile"
+        echo "$line" | kakasi -JH -i utf8 -o utf8 >> "$outfile"
+    fi
+done    < "$infile"
+
+le fichier de sous-titres précédent devient
+
+1
+00:00.000 --> 00:08.000
+作詞・作曲・編曲 初音ミク
+さくし・さっきょく・へんきょく はつおとミク
+
+2
+00:08.000 --> 00:20.000
+それは夢のように まるで嘘のように
+それはゆめのように まるでうそのように
+
+3
+00:20.000 --> 00:34.000
+残酷な朝は 全てをうまいさほった
+ざんこくなあさは すべてをうまいさほった
