@@ -102,7 +102,11 @@ si on prend un fichier de sous-titres japonais, par exemple
 
 残酷な朝は 全てをうまいさほった
 
-on peut le transformer avec le script conv_kanji_hiragana.sh , qui prend le fichier de sous-titres en entrée et le fichier résultat avec idéogramme et hiragana
+on peut le transformer avec le script conv_kanji_hiragana.sh , qui prend 
+
+- le fichier de sous-titres en entrée
+
+- donne un fichier résultat en sortie avec idéogramme et hiragana
 
 le fichier de sous-titres précédent devient
 
