@@ -102,32 +102,7 @@ si on prend un fichier de sous-titres japonais, par exemple
 
 残酷な朝は 全てをうまいさほった
 
-on peut le transformer avec le script suivant, qui prend le fichier de sous-titres en entrée et le fichier résultat avec idéogramme et hiragana
-
-#!/bin/bash
-
-infile="$1"
-
-outfile="$2"
-
-while IFS= read -r line; do
-
-    if [[ -z $line ]] || [ "${#line}" -lt 3 ] || [[ $line =~ "-->" ]]
-    
-    then
-    
-        echo "$line" >> "$outfile"
-        
-    else
-    
-        echo "$line" >> "$outfile"
-        
-        echo "$line" | kakasi -JH -i utf8 -o utf8 >> "$outfile"
-        
-    fi
-    
-done    < "$infile"
-
+on peut le transformer avec le script conv_kanji_hiragana.sh , qui prend le fichier de sous-titres en entrée et le fichier résultat avec idéogramme et hiragana
 
 le fichier de sous-titres précédent devient
 
@@ -156,3 +131,14 @@ le fichier de sous-titres précédent devient
 
 ざんこくなあさは すべてをうまいさほった
 
+
+
+Pour savoir si un fichier de sous-titres sera lu par mpv, il faut faire
+
+file -i fichier.srt
+
+si on a dans le résultat
+
+: application/x-subrip; charset=us-ascii
+
+alors c'est un fichier de sous-titres, il sera pris en compte par mpv 
