@@ -139,6 +139,6 @@ file -i fichier.srt
 
 si on a dans le résultat
 
-: application/x-subrip; charset=us-ascii
+: application/x-subrip
 
 alors c'est un fichier de sous-titres, il sera pris en compte par mpv 
