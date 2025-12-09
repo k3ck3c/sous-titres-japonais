@@ -153,6 +153,8 @@ création de l'imga fixe noire
 
 convert -size 1280x720 xc:black black.png
 
+cela sera fait une seule fois, ce fichier black.png sera re-utilisé par la suite 
+
 conversion du fichier .mp3 en .mp4
 
 ffmpeg -loop 1 -framerate 2 -i black.png -i audio.mp3 -shortest -c:v libx264 -c:a copy video.mp4
