@@ -146,3 +146,15 @@ si on a dans le résultat
 : application/x-subrip
 
 alors c'est un fichier de sous-titres, il sera pris en compte par mpv 
+
+On va créer une image fixe noire, et transformer le fichier audio (.mp3) en vidéo (.mp4) avec une image fixe noire, vu qu'on ne peut afficher des sous-titres dans un fichier audio
+
+création de l'imga fixe noire
+
+convert -size 1280x720 xc:black black.png
+
+conversion du fichier .mp3 en .mp4
+
+ffmpeg -loop 1 -framerate 2 -i black.png -i audio.mp3 -shortest -c:v libx264 -c:a copy video.mp4
+
+
