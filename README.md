@@ -26,9 +26,9 @@ il faut installer
 
 exemple pour extraire l'audio d'une vidéo de chanson
 
-yt-dlp --no-mtime --restrict-filenames --write-auto-subs -x --audio-format mp3
+yt-dlp --no-mtime --restrict-filenames --write-auto-subs -x --audio-format mp3 url-youtube
 
---no-mtime permet d'avoir le fichier .mp3 à la date actuelle
+--no-mtime permet d'avoir le fichier .mp3 à la date actuelle et pas à la date de publication su Youtube
 
 --restrict-filenames permet d'avoir un nom de fichier .mp3 avec seulement des caractères alphanumériques, pas d'émoticones ou autres caractères
 
@@ -40,7 +40,24 @@ yt-dlp --no-mtime --restrict-filenames --write-auto-subs -x --audio-format mp3
 
 si on n'a pas de sous-titres, on va les créer avec whisper
 
- whisper --fp16 False fichier.mp3 > fichier.srt
+ whisper --fp16 False --language ja fichier.mp3 > fichier.srt
+
+ pour des sous-titres en japonais
+
+ whisper --fp16 False --language fr fichier.mp3 > fichier.srt
+
+ pour des sous-titres en français
+
+ le fait d'indiquer le langage évite à whisper de le déterminer lui-même pendant les 30 premières secondes
+
+ attention, la commande whisper prend autour de 30 minutes pour un fichier audio de 4 minutes sur mon PC avec un processeur core i5
+
+ il est possible de payer quelques centimes pour faire cela en quelques secondes sur un service payant genre
+
+ https://www.lemonfox.ai/
+
+ ou plein d'autres
+ 
 
  une fois qu'on a un fichier de sous-titres en japonais, on vérifie si la syntaxe du fichier de sous-titres est correcte
 
