@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>sous-titres-japonais — local</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;max-width:900px;margin:24px auto;padding:0 12px}
+    label{display:block;margin:8px 0 4px}
+    textarea{width:100%;height:140px}
+    pre{background:#111;color:#eee;padding:8px;overflow:auto}
+  </style>
+</head>
+<body>
+  <h1>sous-titres-japonais — local</h1>
+  <form id="form">
+    <label for="url">YouTube URL</label>
+    <input id="url" name="url" type="url" required style="width:100%" placeholder="https://www.youtube.com/watch?v=...">
+
+    <label for="lang">Whisper language</label>
+    <select id="lang" name="lang">
+      <option value="ja">ja (Japanese)</option>
+      <option value="fr">fr (French)</option>
+      <option value="en">en (English)</option>
+    </select>
+
+    <div style="margin-top:12px">
+      <button type="submit">Start</button>
+      <span id="status"></span>
+    </div>
+  </form>
+
+  <h2>Viewer — load previous output</h2>
+  <label for="job-select">Select job</label>
+  <select id="job-select"></select>
+  <button id="load-job">Load</button>
+
+  <div id="viewer" style="margin-top:12px;display:none">
+    <audio id="audio" controls preload="metadata" style="width:100%"></audio>
+    <div id="sub-overlay" style="position:relative;height:120px;margin-top:8px">
+      <div id="subs" style="position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:20px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9)"></div>
+    </div>
+  </div>
+
+  <h3>Result</h3>
+  <div id="result"></div>
+
+  <h3>Logs</h3>
+  <pre id="logs"></pre>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
