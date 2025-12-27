@@ -10,6 +10,7 @@ const subsEl = document.getElementById('subs');
 
 let cues = [] // {start,end,kanji,hira}
 let currentCue = -1
+const showFrCheckbox = document.getElementById('show-fr');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -18,7 +19,6 @@ form.addEventListener('submit', async (e) => {
   statusEl.textContent = ' running...';
   const url = document.getElementById('url').value;
   const lang = document.getElementById('lang').value;
-
   try {
     const res = await fetch('/process', {
       method: 'POST', headers: {'Content-Type': 'application/json'},
@@ -30,21 +30,40 @@ form.addEventListener('submit', async (e) => {
       statusEl.textContent = ' error';
       return;
     }
-    statusEl.textContent = ' done';
-    // show links
-    const ul = document.createElement('ul');
-    const add = (name, href) => {
-      if (!href) return;
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = href; a.target = '_blank'; a.textContent = name + ' — ' + href;
-      li.appendChild(a); ul.appendChild(li);
+    const job = data.job;
+    logsEl.textContent = '';
+    // open EventSource to receive logs and final result
+    const es = new EventSource(`/events/${job}`);
+    es.onmessage = (ev) => {
+      const line = ev.data;
+      // check for timing info to highlight
+      if(line.includes('ELAPSED')) {
+        logsEl.textContent += line + ' ✓\n';
+      } else {
+        logsEl.textContent += line + '\n';
+      }
+      logsEl.scrollTop = logsEl.scrollHeight;
     };
-    add('audio', data.audio);
-    add('srt', data.srt);
-    add('converted srt', data.converted_srt);
-    resultEl.appendChild(ul);
-    logsEl.textContent = JSON.stringify(data.logs, null, 2);
+    es.addEventListener('result', (ev)=>{
+      try{
+        const resObj = JSON.parse(ev.data);
+        const ul = document.createElement('ul');
+        const add = (name, href) => { if (!href) return; const li = document.createElement('li'); const a = document.createElement('a'); a.href = href; a.target = '_blank'; a.textContent = name + ' — ' + href; li.appendChild(a); ul.appendChild(li); };
+        add('audio', resObj.audio);
+        add('srt', resObj.srt);
+        add('converted srt', resObj.converted_srt);
+        resultEl.appendChild(ul);
+        statusEl.textContent = ' done';
+      }catch(err){
+        logsEl.textContent += 'result parse error\n';
+      }
+      es.close();
+    });
+    es.onerror = (ev)=>{
+      // keep showing logs; if eventsource closes, we'll show error
+      // do nothing here
+    };
+    statusEl.textContent = ' job started: ' + job;
   } catch (err) {
     statusEl.textContent = ' error';
     logsEl.textContent = String(err);
@@ -89,6 +108,14 @@ form.addEventListener('submit', async (e) => {
     const [srtText, kanaText] = await Promise.all([srtPromise, kanaPromise]);
     const srtCues = srtText ? parseSrt(srtText) : [];
     const kanaCues = kanaText ? parseSrt(kanaText) : [];
+    // fetch translated fr srt if present
+    let frCues = [];
+    if(job.translated_srt){
+      try{
+        const frText = await fetch(job.translated_srt).then(r=>r.text());
+        frCues = parseSrt(frText);
+      }catch(e){ console.warn('failed to load fr srt', e) }
+    }
 
     // combine cues by index: take kanji from srtCues, hira from kanaCues (second text line if present)
     const n = Math.max(srtCues.length, kanaCues.length);
@@ -103,7 +130,8 @@ form.addEventListener('submit', async (e) => {
         if(lines.length>=2) hira = lines.slice(1).join(' ');
         else hira = lines[0] || '';
       }
-      cues.push({start: a.start||b.start||0, end: a.end||b.end||0, kanji, hira});
+      const fr = (frCues[i] && frCues[i].text) ? frCues[i].text : '';
+      cues.push({start: a.start||b.start||0, end: a.end||b.end||0, kanji, hira, fr});
     }
   });
 
@@ -155,7 +183,8 @@ form.addEventListener('submit', async (e) => {
         // show kanji and hiragana
         const kanji = c.kanji || '';
         const hira = c.hira || '';
-        subsEl.innerHTML = `<div style="font-size:22px">${escapeHtml(kanji)}</div>${hira?`<div style="font-size:18px;opacity:0.95">${escapeHtml(hira)}</div>`:''}`;
+        const fr = c.fr || '';
+        subsEl.innerHTML = `<div style="font-size:22px">${escapeHtml(kanji)}</div>${hira?`<div style="font-size:18px;opacity:0.95">${escapeHtml(hira)}</div>`:''}${(showFrCheckbox && showFrCheckbox.checked && fr)?`<div style="font-size:16px;color:#ffd;opacity:0.95">${escapeHtml(fr)}</div>`:''}`;
       }
     }
   });
