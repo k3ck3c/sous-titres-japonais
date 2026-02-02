@@ -26,7 +26,13 @@ il faut installer
 
 exemple pour extraire l'audio d'une vidéo de chanson
 
-yt-dlp --no-mtime --restrict-filenames --write-auto-subs -x --audio-format mp3 url-youtube
+yt-dlp --cookies-from-browser firefox  --js-runtimes node --no-mtime --restrict-filenames --write-auto-subs -x --audio-format mp3 url-youtube
+
+explications des options
+
+--cookies-from-browser firefox  --js-runtimes node pour éviter certaines erreurs 403 lors du téléchargement
+
+évidemment j'utilise Firefox mais adapatez eavec votre navigateur
 
 --no-mtime permet d'avoir le fichier .mp3 à la date actuelle et pas à la date de publication su Youtube
 
