@@ -32,7 +32,7 @@ explications des options
 
 --cookies-from-browser firefox  --js-runtimes node pour éviter certaines erreurs 403 lors du téléchargement
 
-évidemment j'utilise Firefox mais adapatez eavec votre navigateur
+évidemment j'utilise Firefox mais adaptez avec votre navigateur
 
 --no-mtime permet d'avoir le fichier .mp3 à la date actuelle et pas à la date de publication su Youtube
 
