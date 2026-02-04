@@ -48,7 +48,10 @@ pour éviter certaines erreurs 403 lors du téléchargement
 
 si on n'a pas de sous-titres, on va les créer avec whisper
 
- whisper --fp16 False --language ja fichier.mp3 > fichier.srt
+ whisper --fp16 False  --language Japanese \
+  --task transcribe \
+  --model medium \
+  --output_format srt fichier.mp3 > fichier.srt
 
  pour des sous-titres en japonais
 
