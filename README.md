@@ -185,3 +185,47 @@ conversion du fichier .mp3 en .mp4
 ffmpeg -loop 1 -framerate 2 -i black.png -i audio.mp3 -shortest -c:v libx264 -c:a copy video.mp4
 
 
+le script Python deepl-jp-fr.py a besoin d'une clé Deepl
+
+il suffit de s'inscrire et demander un compte gratuit, la limite est large pour un particulier
+
+créer une clé d'API
+
+faire 
+
+export DEEPL_API_KEY="abc123def456ghi789"
+
+(remplacer la chaine dans la ligne précédente par votre clé d'API)
+
+avant de lancer le script
+
+exemple pour la chanson kono machi, à partir d'un fichier de sous-titres japonais qui ressemble à
+
+1
+00:00:00,000 --> 00:00:29,980
+作詞・作曲 初音ミク
+
+2
+00:00:30,000 --> 00:00:44,780
+この街の空にも星は瞬く
+
+3
+00:00:44,780 --> 00:00:52,960
+今はただ姿を隠してるだけ
+
+on obtient en résultat
+
+1
+00:00:00,000 --> 00:00:29,980
+Paroles et musique de Hatsune Miku
+
+2
+00:00:30,000 --> 00:00:44,780
+Les étoiles scintillent également dans le ciel de cette ville.
+
+3
+00:00:44,780 --> 00:00:52,960
+Aujourd'hui, ils se cachent à la vue de tous.
+
+
+
