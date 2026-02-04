@@ -30,7 +30,9 @@ yt-dlp --cookies-from-browser firefox  --js-runtimes node --no-mtime --restrict-
 
 explications des options
 
---cookies-from-browser firefox  --js-runtimes node pour éviter certaines erreurs 403 lors du téléchargement
+--cookies-from-browser firefox  --js-runtimes node 
+
+pour éviter certaines erreurs 403 lors du téléchargement
 
 évidemment j'utilise Firefox mais adaptez avec votre navigateur
 
