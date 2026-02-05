@@ -26,9 +26,13 @@ il faut installer
 
 exemple pour extraire l'audio d'une vidéo de chanson
 
-yt-dlp --cookies-from-browser firefox  --js-runtimes node --no-mtime --restrict-filenames --write-auto-subs -x --audio-format mp3 url-youtube
+yt-dlp --extractor-args "youtube:player_js_variant=tv" --cookies-from-browser firefox  --js-runtimes node --no-mtime --restrict-filenames --write-auto-subs -x --audio-format mp3 url-youtube
 
 explications des options
+
+- --extractor-args "youtube:player_js_variant=tv"
+
+pour éviter des erreurs 403
 
 --cookies-from-browser firefox  --js-runtimes node 
 
