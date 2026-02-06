@@ -240,4 +240,44 @@ Les étoiles scintillent également dans le ciel de cette ville.
 Aujourd'hui, ils se cachent à la vue de tous.
 
 
+si lors du téléchargement de la video et donc du mp3, on a aussi un fichier .vtt
+
+on le convertit facilement en un fichier srt
+
+par une commande du type
+
+ffmpeg -i Takako_matsu_Otonano_okite.vtt  -vn -an -scodec srt Takako_matsu_Otonano_okite_vtt.srt
+
+exemple, début du .vtt
+
+more  Takako_matsu_Otonano_okite.vtt 
+WEBVTT
+
+00:00.000 --> 00:10.360
+真っ黒な中にひとつ 消えては浮かぶ吐息よ
+
+00:10.360 --> 00:22.060
+冷たい闇夜は僕の願い 飲み込み 匿います
+
+00:22.060 --> 00:32.820
+真っ白な息が今 もっともむくな本音と
+
+
+début du srt résultat
+
+more Takako_matsu_Otonano_okite_vtt.srt
+1
+00:00:00,000 --> 00:00:10,360
+真っ黒な中にひとつ 消えては浮かぶ吐息よ
+
+2
+00:00:10,360 --> 00:00:22,060
+冷たい闇夜は僕の願い 飲み込み 匿います
+
+3
+00:00:22,060 --> 00:00:32,820
+真っ白な息が今 もっともむくな本音と
+
+
+
 
