@@ -7,7 +7,7 @@ extraire l'audio
 
 si il n'y a pas de sous-titres, les créer avec whisper
 
-puis convertir l'audio (fichier .mp3) en vidéo avec une image fixe noire
+puis convertir l'audio (fichier .mp3) en vidéo (fichier mp4) avec une image fixe noire
 
 afficher en haut le sous-titres avec 2 lignes
 
