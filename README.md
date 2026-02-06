@@ -191,6 +191,11 @@ conversion du fichier .mp3 en .mp4
 
 ffmpeg -loop 1 -framerate 2 -i black.png -i audio.mp3 -shortest -c:v libx264 -c:a copy video.mp4
 
+le script 
+
+conv_mp3_mp4.sh
+
+fait cela, et crée le fichier black.png si besoin
 
 le script Python deepl-jp-fr.py a besoin d'une clé Deepl
 
