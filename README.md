@@ -34,21 +34,21 @@ explications des options
 
 pour éviter des erreurs 403
 
---cookies-from-browser firefox  --js-runtimes node 
+- --cookies-from-browser firefox  --js-runtimes node 
 
 pour éviter certaines erreurs 403 lors du téléchargement
 
 évidemment j'utilise Firefox mais adaptez avec votre navigateur
 
---no-mtime permet d'avoir le fichier .mp3 à la date actuelle et pas à la date de publication su Youtube
+- --no-mtime permet d'avoir le fichier .mp3 à la date actuelle et pas à la date de publication su Youtube
 
---restrict-filenames permet d'avoir un nom de fichier .mp3 avec seulement des caractères alphanumériques, pas d'émoticones ou autres caractères
+- --restrict-filenames permet d'avoir un nom de fichier .mp3 avec seulement des caractères alphanumériques, pas d'émoticones ou autres caractères
 
---write-auto-subs écrit les sous-titres si il y en a
+- --write-auto-subs écrit les sous-titres si il y en a
 
--x pour extract 
+- -x pour extract 
 
---audio-format pour créer un fichier .mp3
+- --audio-format pour créer un fichier .mp3
 
 si on n'a pas de sous-titres, on va les créer avec whisper
 
